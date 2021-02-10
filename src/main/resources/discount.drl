@@ -1,0 +1,15 @@
+import  com.springhow.examples.drools.domain.OrderRequest;
+
+rule "Discount for CARD payment above 10000"
+    when
+        orderObject : OrderRequest( paymentType=="CARD" && totalPrice > 10000 );
+    then
+        orderObject.setDiscount(15);
+end;
+
+rule "Discount for CARD payment below 10000"
+    when
+        orderObject : OrderRequest( paymentType=="CARD" && totalPrice > 5000 && totalPrice < 10000 );
+    then
+        orderObject.setDiscount(5);
+end;
